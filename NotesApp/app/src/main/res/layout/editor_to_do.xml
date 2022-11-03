@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/doubleMatchParent"
+    android:weightSum="10"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/note_linear_layout"
+        style="@style/noteContainer"
+        android:layout_weight="1"
+        android:weightSum="10">
+
+        <EditText
+            android:id="@+id/toDo_note_title"
+            style="@style/noteTitle"
+            android:layout_weight="8" />
+
+        <EditText
+            android:id="@+id/toDo_note_content"
+            style="@style/noteContent"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+
+    <Button
+        android:text="CONFIRM EDIT"
+        android:id="@+id/toDo_confirm_edit"
+        style="@style/doubleMatchParent"
+        android:layout_weight="9"
+        />
+</LinearLayout>

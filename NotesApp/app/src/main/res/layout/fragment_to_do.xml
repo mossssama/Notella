@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/doubleMatchParent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ToDoFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        style="@style/doubleMatchParent"
+        android:id="@+id/toDo_rv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</RelativeLayout>

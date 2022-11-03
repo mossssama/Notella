@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/toDo"
+        android:title="@string/to_do"
+        android:icon="@drawable/ic_nav_to_do">
+    </item>
+
+    <item
+        android:id="@+id/toBuy"
+        android:title="@string/to_buy"
+        android:icon="@drawable/ic_nav_to_buy">
+    </item>
+
+    <item
+        android:id="@+id/toSearch"
+        android:title="@string/to_search"
+        android:icon="@drawable/ic_nav_to_search">
+    </item>
+
+</menu>
