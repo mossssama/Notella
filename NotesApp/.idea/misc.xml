@@ -3,6 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/drawable/ic_nav_to_buy.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/drawable/ic_nav_to_watch.xml" value="0.108" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/editor_new_note.xml" value="0.24635416666666668" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/editor_to_buy.xml" value="0.24635416666666668" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/editor_to_do.xml" value="0.24635416666666668" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/editor_to_search.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/editor_to_watch.xml" value="0.24895833333333334" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_buy.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_search.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_watch.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/recycler_view_item.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/menu/drop_down_menu.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/Notes/Notes/app/src/main/res/drawable/ic_baseline_notes_24.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Notes/Notes/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Notes/Notes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />

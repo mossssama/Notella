@@ -15,16 +15,16 @@
         <TextView
             android:id="@+id/itemTitle"
             android:textStyle="bold"
-            android:hint="Title"
+            android:hint="-"
             android:paddingStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textColor="#000"
+            android:textColor="#964b00"
             android:textSize="30sp"
             android:gravity="center"/>
         <TextView
             android:id="@+id/itemContent"
-            android:hint="Example of notes"
+            android:hint="-"
             android:paddingStart="10dp"
             style="@style/wrapHeight_matchWidth"
             android:textColor="#000"

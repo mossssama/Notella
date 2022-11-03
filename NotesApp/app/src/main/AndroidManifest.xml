@@ -26,6 +26,9 @@
             android:name=".NotesEditors.ToSearchEditor"
             android:exported="true"/>
         <activity
+            android:name=".NotesEditors.ToWatchEditor"
+            android:exported="true"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

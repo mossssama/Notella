@@ -8,14 +8,18 @@
     <FrameLayout
         style="@style/doubleMatchParent"
         android:id="@+id/fragments_container"
-        android:layout_above="@id/bottom_navigation">
+        android:layout_above="@id/bottom_navigation"
+        android:background="@color/background">
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         style="@style/wrapHeight_matchWidth"
         android:id="@+id/bottom_navigation"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_nav_menu">
+        app:menu="@menu/bottom_nav_menu"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:background="@color/navigationColor">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </RelativeLayout>

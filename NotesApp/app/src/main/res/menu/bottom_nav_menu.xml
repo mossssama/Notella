@@ -18,4 +18,10 @@
         android:icon="@drawable/ic_nav_to_search">
     </item>
 
+    <item
+        android:id="@+id/toWatch"
+        android:title="@string/to_watch"
+        android:icon="@drawable/ic_nav_to_watch">
+    </item>
+
 </menu>

@@ -13,6 +13,7 @@ import com.example.notes.NotesEditors.NewNoteEditor;
 import com.example.notes.fragments.ToBuyFragment;
 import com.example.notes.fragments.ToDoFragment;
 import com.example.notes.fragments.ToSearchFragment;
+import com.example.notes.fragments.ToWatchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TO_DO_FRAGMENT = "ToDo";
     public static final String TO_BUY_FRAGMENT ="ToBuy";
     public static final String TO_SEARCH_FRAGMENT ="ToSearch";
+    public static final String TO_WATCH_FRAGMENT ="ToWatch";
 
     public static String currentFragment= TO_DO_FRAGMENT;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ToDoFragment toDoFragment=new ToDoFragment();
     ToBuyFragment toBuyFragment=new ToBuyFragment();
     ToSearchFragment toSearchFragment=new ToSearchFragment();
+    ToWatchFragment toWatchFragment=new ToWatchFragment();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {         //To inflate created menu
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.toDo:     getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, toDoFragment).commit();    currentFragment= TO_DO_FRAGMENT; return true;
                     case R.id.toBuy:    getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, toBuyFragment).commit();   currentFragment= TO_BUY_FRAGMENT; return true;
                     case R.id.toSearch: getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container,toSearchFragment).commit(); currentFragment= TO_SEARCH_FRAGMENT; return true;
+                    case R.id.toWatch: getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container,toWatchFragment).commit();  currentFragment= TO_WATCH_FRAGMENT; return true;
                 }
                 return false;
         });

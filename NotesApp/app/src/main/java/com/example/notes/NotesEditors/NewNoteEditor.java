@@ -17,10 +17,12 @@ import com.example.notes.R;
 import com.example.notes.fragments.ToBuyFragment;
 import com.example.notes.fragments.ToDoFragment;
 import com.example.notes.fragments.ToSearchFragment;
+import com.example.notes.fragments.ToWatchFragment;
 import com.example.notes.recyclerView.NoteModel;
 import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToBuy;
 import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToDo;
 import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToSearch;
+import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToWatch;
 
 public class NewNoteEditor extends AppCompatActivity {
 
@@ -49,11 +51,16 @@ public class NewNoteEditor extends AppCompatActivity {
                     SINGLETON_SharedPrefToBuy.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
                     ToBuyFragment.toBuyRecyclerView.setAdapter(adapter);
                     break;
-                default:
+                case MainActivity.TO_SEARCH_FRAGMENT:
                     ToSearchFragment.toSearchNotes.add(SINGLETON_SharedPrefToSearch.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
                     adapter.notifyDataSetChanged();
                     SINGLETON_SharedPrefToSearch.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
                     ToSearchFragment.toSearchRecyclerView.setAdapter(adapter);
+                default:
+                    ToWatchFragment.toWatchNotes.add(SINGLETON_SharedPrefToWatch.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
+                    adapter.notifyDataSetChanged();
+                    SINGLETON_SharedPrefToWatch.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
+                    ToWatchFragment.toWatchRecyclerView.setAdapter(adapter);
             }
         });
 
