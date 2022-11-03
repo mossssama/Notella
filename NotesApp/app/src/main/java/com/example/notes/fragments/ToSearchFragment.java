@@ -10,13 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.notes.NotesEditors.ToBuyEditor;
 import com.example.notes.NotesEditors.ToSearchEditor;
 import com.example.notes.R;
 import com.example.notes.recyclerView.Adapter;
 import com.example.notes.recyclerView.NoteModel;
 import com.example.notes.recyclerView.RecyclerViewInterface;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToBuy;
 import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToSearch;
 
 import java.util.ArrayList;

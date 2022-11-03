@@ -24,7 +24,7 @@
     </LinearLayout>
 
     <Button
-        android:text="CONFIRM EDIT"
+        android:text="@string/btn_confirm_note"
         android:id="@+id/toWatch_confirm_edit"
         style="@style/doubleMatchParent"
         android:layout_weight="9"

@@ -56,6 +56,7 @@ public class NewNoteEditor extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                     SINGLETON_SharedPrefToSearch.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
                     ToSearchFragment.toSearchRecyclerView.setAdapter(adapter);
+                    break;
                 default:
                     ToWatchFragment.toWatchNotes.add(SINGLETON_SharedPrefToWatch.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
                     adapter.notifyDataSetChanged();

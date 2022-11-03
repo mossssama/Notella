@@ -15,8 +15,9 @@
         <TextView
             android:id="@+id/itemTitle"
             android:textStyle="bold"
-            android:hint="-"
-            android:paddingStart="10dp"
+            android:hint="@string/none"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textColor="#964b00"
@@ -24,8 +25,9 @@
             android:gravity="center"/>
         <TextView
             android:id="@+id/itemContent"
-            android:hint="-"
-            android:paddingStart="10dp"
+            android:hint="@string/none"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             style="@style/wrapHeight_matchWidth"
             android:textColor="#000"
             android:textSize="20sp"
