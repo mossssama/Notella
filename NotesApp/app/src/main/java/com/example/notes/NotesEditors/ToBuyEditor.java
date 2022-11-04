@@ -1,6 +1,6 @@
 package com.example.notes.NotesEditors;
 
-import static com.example.notes.fragments.ToBuyFragment.adapter;
+import static com.example.notes.fragments.ToBuyFragment.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.notes.R;
 import com.example.notes.fragments.ToBuyFragment;
 import com.example.notes.recyclerView.NoteModel;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToBuy;
-
 
 public class ToBuyEditor extends AppCompatActivity {
     int noteID;
@@ -41,11 +39,11 @@ public class ToBuyEditor extends AppCompatActivity {
 
         toBuyConfirmEdit.setOnClickListener((View view)->{
 
-                ToBuyFragment.toBuyNotes.set(noteID,new NoteModel(toBuyTitle.getText()+"",toBuyContent.getText()+""));
-                adapter.notifyDataSetChanged();
-                SINGLETON_SharedPrefToBuy.remove(ToBuyFragment.toBuyNotes.get(noteID).getNoteTitle());
-                SINGLETON_SharedPrefToBuy.write(toBuyTitle.getText()+"",toBuyContent.getText()+"");
-                ToBuyFragment.toBuyRecyclerView.setAdapter(adapter);
+            ToBuyFragment.toBuyNotes.set(noteID,new NoteModel(toBuyTitle.getText()+"",toBuyContent.getText()+""));
+            adapter.notifyDataSetChanged();
+            toBuySharedPrefs.remove(ToBuyFragment.toBuyNotes.get(noteID).getNoteTitle());
+            toBuySharedPrefs.write(toBuyTitle.getText()+"",toBuyContent.getText()+"");
+            ToBuyFragment.toBuyRecyclerView.setAdapter(adapter);
 
         });
 

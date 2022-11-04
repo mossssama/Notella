@@ -27,6 +27,6 @@
         android:text="@string/btn_confirm_note"
         android:id="@+id/toDo_confirm_edit"
         style="@style/doubleMatchParent"
-        android:layout_weight="9"
-        />
+        android:layout_weight="9" />
+
 </LinearLayout>

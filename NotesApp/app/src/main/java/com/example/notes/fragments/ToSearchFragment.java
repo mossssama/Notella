@@ -15,7 +15,7 @@ import com.example.notes.R;
 import com.example.notes.recyclerView.Adapter;
 import com.example.notes.recyclerView.NoteModel;
 import com.example.notes.recyclerView.RecyclerViewInterface;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToSearch;
+import com.example.notes.SharedPrefs;
 
 import java.util.ArrayList;
 
@@ -25,13 +25,14 @@ public class ToSearchFragment extends Fragment implements RecyclerViewInterface{
     public static RecyclerView toSearchRecyclerView;
     public static ArrayList<NoteModel> toSearchNotes;
     public static Adapter adapter;
+    public static SharedPrefs toSearchSharedPrefs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_to_search, container, false);
 
-        SINGLETON_SharedPrefToSearch.init(getContext());
+        toSearchSharedPrefs =new SharedPrefs(getContext(),"ToSearch");
 
         toSearchRecyclerView=view.findViewById(R.id.toSearch_rv);
         toSearchRecyclerView.setHasFixedSize(true);
@@ -44,9 +45,9 @@ public class ToSearchFragment extends Fragment implements RecyclerViewInterface{
 
     private ArrayList<NoteModel> initDataFromSharedPrefs(){
         toSearchNotes=new ArrayList<>();
-        ArrayList<String>tempTitles= SINGLETON_SharedPrefToSearch.readKeys();
-        ArrayList<String>tempNotes=SINGLETON_SharedPrefToSearch.readValues();
-        for(int i=0;i<SINGLETON_SharedPrefToSearch.getSize();i++){
+        ArrayList<String>tempTitles= toSearchSharedPrefs.readKeys();
+        ArrayList<String>tempNotes=toSearchSharedPrefs.readValues();
+        for(int i=0;i<toSearchSharedPrefs.getSize();i++){
             toSearchNotes.add(new NoteModel(tempTitles.get(i),tempNotes.get(i)));
         }
         return toSearchNotes;
@@ -64,7 +65,7 @@ public class ToSearchFragment extends Fragment implements RecyclerViewInterface{
         String deletedNoteKey=toSearchNotes.get(position).getNoteTitle();
         toSearchNotes.remove(position);
         adapter.notifyDataSetChanged();
-        SINGLETON_SharedPrefToSearch.remove(deletedNoteKey);
+        toSearchSharedPrefs.remove(deletedNoteKey);
         toSearchRecyclerView.setAdapter(adapter);
     }
 }

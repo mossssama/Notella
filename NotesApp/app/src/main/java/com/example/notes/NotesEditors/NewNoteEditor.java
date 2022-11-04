@@ -1,7 +1,10 @@
 package com.example.notes.NotesEditors;
 
 import static com.example.notes.MainActivity.*;
-import static com.example.notes.fragments.ToBuyFragment.adapter;
+import static com.example.notes.fragments.ToBuyFragment.*;
+import static com.example.notes.fragments.ToDoFragment.toDoSharedPrefs;
+import static com.example.notes.fragments.ToSearchFragment.toSearchSharedPrefs;
+import static com.example.notes.fragments.ToWatchFragment.toWatchSharedPrefs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,15 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.notes.MainActivity;
 import com.example.notes.R;
-import com.example.notes.fragments.ToBuyFragment;
-import com.example.notes.fragments.ToDoFragment;
-import com.example.notes.fragments.ToSearchFragment;
-import com.example.notes.fragments.ToWatchFragment;
+import com.example.notes.fragments.*;
 import com.example.notes.recyclerView.NoteModel;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToBuy;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToDo;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToSearch;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToWatch;
 
 public class NewNoteEditor extends AppCompatActivity {
 
@@ -40,27 +36,27 @@ public class NewNoteEditor extends AppCompatActivity {
         newNoteConfirm.setOnClickListener((View view)->{
             switch(currentFragment) {
                 case MainActivity.TO_DO_FRAGMENT:
-                    ToDoFragment.toDoNotes.add(SINGLETON_SharedPrefToDo.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
+                    ToDoFragment.toDoNotes.add(toDoSharedPrefs.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
                     adapter.notifyDataSetChanged();
-                    SINGLETON_SharedPrefToDo.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
+                    toDoSharedPrefs.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
                     ToDoFragment.toDoRecyclerView.setAdapter(adapter);
                     break;
                 case MainActivity.TO_BUY_FRAGMENT:
-                    ToBuyFragment.toBuyNotes.add(SINGLETON_SharedPrefToBuy.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
+                    ToBuyFragment.toBuyNotes.add(toBuySharedPrefs.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
                     adapter.notifyDataSetChanged();
-                    SINGLETON_SharedPrefToBuy.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
+                    toBuySharedPrefs.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
                     ToBuyFragment.toBuyRecyclerView.setAdapter(adapter);
                     break;
                 case MainActivity.TO_SEARCH_FRAGMENT:
-                    ToSearchFragment.toSearchNotes.add(SINGLETON_SharedPrefToSearch.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
+                    ToSearchFragment.toSearchNotes.add(toSearchSharedPrefs.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
                     adapter.notifyDataSetChanged();
-                    SINGLETON_SharedPrefToSearch.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
+                    toSearchSharedPrefs.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
                     ToSearchFragment.toSearchRecyclerView.setAdapter(adapter);
                     break;
                 default:
-                    ToWatchFragment.toWatchNotes.add(SINGLETON_SharedPrefToWatch.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
+                    ToWatchFragment.toWatchNotes.add(toWatchSharedPrefs.getSize(), new NoteModel(newNoteTitle.getText() + "", newNoteContent.getText() + ""));
                     adapter.notifyDataSetChanged();
-                    SINGLETON_SharedPrefToWatch.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
+                    toWatchSharedPrefs.write(newNoteTitle.getText() + "", newNoteContent.getText() + "");
                     ToWatchFragment.toWatchRecyclerView.setAdapter(adapter);
             }
         });

@@ -9,8 +9,7 @@
         style="@style/doubleMatchParent"
         android:id="@+id/fragments_container"
         android:layout_above="@id/bottom_navigation"
-        android:background="@color/background">
-    </FrameLayout>
+        android:background="@color/background"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         style="@style/wrapHeight_matchWidth"
@@ -19,7 +18,6 @@
         app:menu="@menu/bottom_nav_menu"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
-        android:background="@color/navigationColor">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        android:background="@color/navigationColor"/>
 
 </RelativeLayout>

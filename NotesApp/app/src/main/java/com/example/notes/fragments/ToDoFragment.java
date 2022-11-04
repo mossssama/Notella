@@ -15,7 +15,7 @@ import com.example.notes.R;
 import com.example.notes.recyclerView.Adapter;
 import com.example.notes.recyclerView.NoteModel;
 import com.example.notes.recyclerView.RecyclerViewInterface;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToDo;
+import com.example.notes.SharedPrefs;
 
 
 import java.util.ArrayList;
@@ -26,13 +26,14 @@ public class ToDoFragment extends Fragment implements RecyclerViewInterface{
     public static RecyclerView toDoRecyclerView;
     public static ArrayList<NoteModel> toDoNotes;
     public static Adapter adapter;
+    public static SharedPrefs toDoSharedPrefs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_to_buy, container, false);
 
-        SINGLETON_SharedPrefToDo.init(getContext());
+        toDoSharedPrefs =new SharedPrefs(getContext(),"ToDo");
 
         toDoRecyclerView=view.findViewById(R.id.toBuy_rv);
         toDoRecyclerView.setHasFixedSize(true);
@@ -45,9 +46,9 @@ public class ToDoFragment extends Fragment implements RecyclerViewInterface{
 
     private ArrayList<NoteModel> initDataFromSharedPrefs(){
         toDoNotes=new ArrayList<>();
-        ArrayList<String>tempTitles=SINGLETON_SharedPrefToDo.readKeys();
-        ArrayList<String>tempNotes=SINGLETON_SharedPrefToDo.readValues();
-        for(int i=0;i<SINGLETON_SharedPrefToDo.getSize();i++){
+        ArrayList<String>tempTitles=toDoSharedPrefs.readKeys();
+        ArrayList<String>tempNotes=toDoSharedPrefs.readValues();
+        for(int i=0;i<toDoSharedPrefs.getSize();i++){
             toDoNotes.add(new NoteModel(tempTitles.get(i),tempNotes.get(i)));
         }
         return toDoNotes;
@@ -65,7 +66,7 @@ public class ToDoFragment extends Fragment implements RecyclerViewInterface{
         String deletedNoteKey=toDoNotes.get(position).getNoteTitle();
         toDoNotes.remove(position);
         adapter.notifyDataSetChanged();
-        SINGLETON_SharedPrefToDo.remove(deletedNoteKey);
+        toDoSharedPrefs.remove(deletedNoteKey);
         toDoRecyclerView.setAdapter(adapter);
     }
 }

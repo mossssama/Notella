@@ -1,6 +1,6 @@
 package com.example.notes.NotesEditors;
 
-import static com.example.notes.fragments.ToSearchFragment.adapter;
+import static com.example.notes.fragments.ToWatchFragment.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.notes.R;
-import com.example.notes.fragments.ToSearchFragment;
 import com.example.notes.fragments.ToWatchFragment;
 import com.example.notes.recyclerView.NoteModel;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToSearch;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToWatch;
 
 public class ToWatchEditor extends AppCompatActivity {
 
@@ -45,8 +42,8 @@ public class ToWatchEditor extends AppCompatActivity {
 
             ToWatchFragment.toWatchNotes.set(noteID,new NoteModel(toWatchTitle.getText()+"",toWatchContent.getText()+""));
             adapter.notifyDataSetChanged();
-            SINGLETON_SharedPrefToWatch.remove(ToWatchFragment.toWatchNotes.get(noteID).getNoteTitle());
-            SINGLETON_SharedPrefToWatch.write(toWatchTitle.getText()+"",toWatchContent.getText()+"");
+            toWatchSharedPrefs.remove(ToWatchFragment.toWatchNotes.get(noteID).getNoteTitle());
+            toWatchSharedPrefs.write(toWatchTitle.getText()+"",toWatchContent.getText()+"");
             ToWatchFragment.toWatchRecyclerView.setAdapter(adapter);
 
         });

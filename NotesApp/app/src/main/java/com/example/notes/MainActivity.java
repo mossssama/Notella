@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container,toDoFragment).commit();
         bottomNavigationView.setOnItemSelectedListener((MenuItem item)-> {
-                switch(item.getItemId()) {
-                    case R.id.toDo:     getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, toDoFragment).commit();    currentFragment= TO_DO_FRAGMENT; return true;
-                    case R.id.toBuy:    getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, toBuyFragment).commit();   currentFragment= TO_BUY_FRAGMENT; return true;
-                    case R.id.toSearch: getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container,toSearchFragment).commit(); currentFragment= TO_SEARCH_FRAGMENT; return true;
-                    case R.id.toWatch: getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container,toWatchFragment).commit();  currentFragment= TO_WATCH_FRAGMENT; return true;
-                }
-                return false;
+            switch(item.getItemId()) {
+                case R.id.toDo:     getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, toDoFragment).commit();    currentFragment= TO_DO_FRAGMENT; return true;
+                case R.id.toBuy:    getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, toBuyFragment).commit();   currentFragment= TO_BUY_FRAGMENT; return true;
+                case R.id.toSearch: getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container,toSearchFragment).commit(); currentFragment= TO_SEARCH_FRAGMENT; return true;
+                case R.id.toWatch:  getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container,toWatchFragment).commit();  currentFragment= TO_WATCH_FRAGMENT; return true;
+            }
+            return false;
         });
 
     }

@@ -1,6 +1,6 @@
 package com.example.notes.NotesEditors;
 
-import static com.example.notes.fragments.ToSearchFragment.adapter;
+import static com.example.notes.fragments.ToSearchFragment.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.notes.R;
 import com.example.notes.fragments.ToSearchFragment;
 import com.example.notes.recyclerView.NoteModel;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToSearch;
 
 public class ToSearchEditor extends AppCompatActivity {
     int noteID;
@@ -41,8 +40,8 @@ public class ToSearchEditor extends AppCompatActivity {
 
             ToSearchFragment.toSearchNotes.set(noteID,new NoteModel(toSearchTitle.getText()+"",toSearchContent.getText()+""));
             adapter.notifyDataSetChanged();
-            SINGLETON_SharedPrefToSearch.remove(ToSearchFragment.toSearchNotes.get(noteID).getNoteTitle());
-            SINGLETON_SharedPrefToSearch.write(toSearchTitle.getText()+"",toSearchContent.getText()+"");
+            toSearchSharedPrefs.remove(ToSearchFragment.toSearchNotes.get(noteID).getNoteTitle());
+            toSearchSharedPrefs.write(toSearchTitle.getText()+"",toSearchContent.getText()+"");
             ToSearchFragment.toSearchRecyclerView.setAdapter(adapter);
 
         });

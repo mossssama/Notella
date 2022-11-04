@@ -1,6 +1,6 @@
 package com.example.notes.NotesEditors;
 
-import static com.example.notes.fragments.ToDoFragment.adapter;
+import static com.example.notes.fragments.ToDoFragment.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.notes.R;
 import com.example.notes.fragments.ToDoFragment;
 import com.example.notes.recyclerView.NoteModel;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToDo;
 
 public class ToDoEditor extends AppCompatActivity {
     int noteID;
@@ -41,8 +40,8 @@ public class ToDoEditor extends AppCompatActivity {
 
             ToDoFragment.toDoNotes.set(noteID,new NoteModel(toDoTitle.getText()+"",toDoContent.getText()+""));
             adapter.notifyDataSetChanged();
-            SINGLETON_SharedPrefToDo.remove(ToDoFragment.toDoNotes.get(noteID).getNoteTitle());
-            SINGLETON_SharedPrefToDo.write(toDoTitle.getText()+"",toDoContent.getText()+"");
+            toDoSharedPrefs.remove(ToDoFragment.toDoNotes.get(noteID).getNoteTitle());
+            toDoSharedPrefs.write(toDoTitle.getText()+"",toDoContent.getText()+"");
             ToDoFragment.toDoRecyclerView.setAdapter(adapter);
 
         });

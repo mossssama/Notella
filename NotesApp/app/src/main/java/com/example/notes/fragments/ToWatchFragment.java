@@ -16,7 +16,7 @@ import com.example.notes.R;
 import com.example.notes.recyclerView.Adapter;
 import com.example.notes.recyclerView.NoteModel;
 import com.example.notes.recyclerView.RecyclerViewInterface;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToWatch;
+import com.example.notes.SharedPrefs;
 
 import java.util.ArrayList;
 
@@ -26,13 +26,14 @@ public class ToWatchFragment extends Fragment implements RecyclerViewInterface {
     public static RecyclerView toWatchRecyclerView;
     public static ArrayList<NoteModel> toWatchNotes;
     public static Adapter adapter;
+    public static SharedPrefs toWatchSharedPrefs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_to_watch, container, false);
 
-        SINGLETON_SharedPrefToWatch.init(getContext());
+        toWatchSharedPrefs =new SharedPrefs(getContext(),"ToWatch");
 
         toWatchRecyclerView=view.findViewById(R.id.toWatch_rv);
         toWatchRecyclerView.setHasFixedSize(true);
@@ -45,9 +46,9 @@ public class ToWatchFragment extends Fragment implements RecyclerViewInterface {
 
     private ArrayList<NoteModel> initDataFromSharedPrefs(){
         toWatchNotes=new ArrayList<>();
-        ArrayList<String>tempTitles= SINGLETON_SharedPrefToWatch.readKeys();
-        ArrayList<String>tempNotes=SINGLETON_SharedPrefToWatch.readValues();
-        for(int i=0;i<SINGLETON_SharedPrefToWatch.getSize();i++){
+        ArrayList<String>tempTitles= toWatchSharedPrefs.readKeys();
+        ArrayList<String>tempNotes=toWatchSharedPrefs.readValues();
+        for(int i=0;i<toWatchSharedPrefs.getSize();i++){
             toWatchNotes.add(new NoteModel(tempTitles.get(i),tempNotes.get(i)));
         }
         return toWatchNotes;
@@ -65,7 +66,7 @@ public class ToWatchFragment extends Fragment implements RecyclerViewInterface {
         String deletedNoteKey=toWatchNotes.get(position).getNoteTitle();
         toWatchNotes.remove(position);
         adapter.notifyDataSetChanged();
-        SINGLETON_SharedPrefToWatch.remove(deletedNoteKey);
+        toWatchSharedPrefs.remove(deletedNoteKey);
         toWatchRecyclerView.setAdapter(adapter);
     }
 }

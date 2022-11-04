@@ -15,7 +15,7 @@ import com.example.notes.R;
 import com.example.notes.recyclerView.Adapter;
 import com.example.notes.recyclerView.NoteModel;
 import com.example.notes.recyclerView.RecyclerViewInterface;
-import com.example.notes.sharedPrefs.SINGLETON_SharedPrefToBuy;
+import com.example.notes.SharedPrefs;
 
 import java.util.ArrayList;
 
@@ -25,13 +25,14 @@ public class ToBuyFragment extends Fragment implements RecyclerViewInterface {
     public static RecyclerView toBuyRecyclerView;
     public static ArrayList<NoteModel> toBuyNotes;
     public static Adapter adapter;
+    public static SharedPrefs toBuySharedPrefs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_to_buy, container, false);
 
-        SINGLETON_SharedPrefToBuy.init(getContext());
+        toBuySharedPrefs =new SharedPrefs(getContext(),"ToBuy");
 
         toBuyRecyclerView=view.findViewById(R.id.toBuy_rv);
         toBuyRecyclerView.setHasFixedSize(true);
@@ -44,9 +45,9 @@ public class ToBuyFragment extends Fragment implements RecyclerViewInterface {
 
     private ArrayList<NoteModel> initDataFromSharedPrefs(){
         toBuyNotes=new ArrayList<>();
-        ArrayList<String>tempTitles=SINGLETON_SharedPrefToBuy.readKeys();
-        ArrayList<String>tempNotes=SINGLETON_SharedPrefToBuy.readValues();
-        for(int i=0;i<SINGLETON_SharedPrefToBuy.getSize();i++){
+        ArrayList<String>tempTitles= toBuySharedPrefs.readKeys();
+        ArrayList<String>tempNotes= toBuySharedPrefs.readValues();
+        for(int i = 0; i< toBuySharedPrefs.getSize(); i++){
             toBuyNotes.add(new NoteModel(tempTitles.get(i),tempNotes.get(i)));
         }
         return toBuyNotes;
@@ -64,7 +65,7 @@ public class ToBuyFragment extends Fragment implements RecyclerViewInterface {
         String deletedNoteKey=toBuyNotes.get(position).getNoteTitle();
         toBuyNotes.remove(position);
         adapter.notifyDataSetChanged();
-        SINGLETON_SharedPrefToBuy.remove(deletedNoteKey);
+        toBuySharedPrefs.remove(deletedNoteKey);
         toBuyRecyclerView.setAdapter(adapter);
     }
 }
