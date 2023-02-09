@@ -48,8 +48,6 @@ public class ToWatchFragment extends Fragment implements RecyclerViewItemClick {
         View view = inflater.inflate(R.layout.fragment_to_watch, container, false);
         RecyclerView recyclerView=view.findViewById(R.id.toWatchRecyclerView);
 
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
         notesRoom.notesDao().getFragmentNotes("ToWatch")
                             .subscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
