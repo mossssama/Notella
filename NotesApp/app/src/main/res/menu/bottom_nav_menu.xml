@@ -5,27 +5,27 @@
     <!-- The menu included in the bottom of MainActivity-->
     <item
         android:id="@+id/toDo"
-        android:title="To Do"
+        android:title="ToDo"
         android:icon="@drawable/ic_to_do"
         />
     <item
         android:id="@+id/toBuy"
-        android:title="To Buy"
+        android:title="ToBuy"
         android:icon="@drawable/ic_to_buy"
         />
     <item
         android:id="@+id/toSearch"
-        android:title="To Search"
+        android:title="ToSearch"
         android:icon="@drawable/ic_to_search"
         />
     <item
         android:id="@+id/toWatch"
-        android:title="To Watch"
+        android:title="ToWatch"
         android:icon="@drawable/ic_to_watch"
         />
     <item
         android:id="@+id/toRead"
-        android:title="To Read"
+        android:title="ToRead"
         android:icon="@drawable/ic_to_read"
         />
 </menu>

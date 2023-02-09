@@ -12,6 +12,23 @@
         <entry key="..\:/AndroidProjects/CurrProjects/NotesApp/app/src/main/res/layout/fragment_to_watch.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/CurrProjects/NotesApp/app/src/main/res/menu/bottom_nav_bar.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/CurrProjects/NotesApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19166666666666668" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/drawable/ic_multi_player.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/drawable/ic_other.xml" value="0.1755" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/drawable/ic_single_player.xml" value="0.1755" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/drawable/ic_to_search.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/editor_new_note.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/fragment_other.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/fragment_single_player.xml" value="0.10989583333333333" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/fragment_to_buy.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/fragment_to_do.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/fragment_to_read.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/fragment_to_search.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/fragment_to_watch.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/note_list_item.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/notes_list_item.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/notes_rv_row.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24031007751937986" />
       </map>
     </option>
   </component>

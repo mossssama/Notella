@@ -1,66 +1,105 @@
 package com.example.notesapp.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.notesapp.Converters.ToArrayListConverter;
+import com.example.notesapp.NewNoteEditor;
+import com.example.notesapp.RecyclerView.RecyclerViewAdapter;
+import com.example.notesapp.POJO.NoteModel;
 import com.example.notesapp.R;
+import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
+import com.example.notesapp.Room.NotesDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ToReadFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ToReadFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import io.reactivex.CompletableObserver;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class ToReadFragment extends Fragment implements RecyclerViewItemClick {
 
-    public ToReadFragment() {
-        // Required empty public constructor
-    }
+    public static ArrayList<NoteModel> toReadList =new ArrayList<>();
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ToReadFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ToReadFragment newInstance(String param1, String param2) {
-        ToReadFragment fragment = new ToReadFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    /* Instance to deal with Room */
+    NotesDatabase notesRoom = NotesDatabase.getInstance(getContext());
+
+    public ToReadFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_to_read, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_to_read, container, false);
+        RecyclerView recyclerView=view.findViewById(R.id.toReadRecyclerView);
+
+        notesRoom.notesDao().getFragmentNotes("ToRead")
+                            .subscribeOn(Schedulers.computation())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new SingleObserver<List<NoteModel>>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {}
+
+                                @Override
+                                public void onSuccess(List<NoteModel> notes) {
+                                    toReadList= ToArrayListConverter.toArrayList(notes);
+                                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toReadList,ToReadFragment.this);
+                                    recyclerView.setAdapter(adapter);
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                }
+                            });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        return view;
+    }
+
+    /* to edit a note */
+    @Override
+    public void onItemClick(int position) {
+        Intent editNote = new Intent(getContext(), NewNoteEditor.class);
+        editNote.putExtra("NoteTitle",toReadList.get(position).getNoteTitle());
+        editNote.putExtra("NoteContent",toReadList.get(position).getNoteDescription());
+        editNote.putExtra("NoteFragment","ToRead");
+        startActivity(editNote);
+    }
+
+    /* to delete a note */
+    @Override
+    public void onItemLongClick(int position) {
+        notesRoom.notesDao().deleteNote(toReadList.get(position).getNoteTitle())
+                .subscribeOn(Schedulers.computation())
+                .subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(Disposable d) {}
+
+                    @Override
+                    public void onComplete() {
+                        Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
     }
 }

@@ -53,4 +53,12 @@ dependencies {
 
     /*M Osama: RXJava + Room dependencies */
     implementation "androidx.room:room-rxjava2:$roomVersion"
+
+
+    // For control over item selection of both touch and mouse driven selection; for recyclerView
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.recyclerview:recyclerview-selection:1.2.0-alpha01"
+
+    //To include card view
+    implementation "androidx.cardview:cardview:1.0.0"
 }

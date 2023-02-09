@@ -9,8 +9,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Note.class}, version = 1)
+@Database(entities = {Note.class},version = 1)
 public abstract class NotesDatabase extends RoomDatabase {
+
     private static NotesDatabase instance;
     public abstract NotesDao notesDao();
     private static String DATABASE_NAME ="notesDatabase";     /* Found in  com.example.ProjectName/data/data/database/databaseName  */

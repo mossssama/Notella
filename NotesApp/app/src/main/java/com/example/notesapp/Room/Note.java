@@ -3,27 +3,23 @@ package com.example.notesapp.Room;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 @Entity(tableName = "notesTable")
 public class Note {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey(autoGenerate = false)
+    @NotNull
     private String noteTitle;
     private String noteContent;
-    private String noteFragment;
+    private String noteSection;
 
-    public Note(String noteTitle, String noteContent, String noteFragment) {
+    public Note(String noteTitle, String noteContent, String noteSection) {
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
-        this.noteFragment = noteFragment;
+        this.noteSection = noteSection;
     }
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
     public String getNoteTitle() {
         return noteTitle;
     }
@@ -36,10 +32,10 @@ public class Note {
     public void setNoteContent(String noteContent) {
         this.noteContent = noteContent;
     }
-    public String getNoteFragment() {
-        return noteFragment;
+    public String getNoteSection() {
+        return noteSection;
     }
-    public void setNoteFragment(String noteFragment) {
-        this.noteFragment = noteFragment;
+    public void setNoteSection(String noteSection) {
+        this.noteSection = noteSection;
     }
 }
