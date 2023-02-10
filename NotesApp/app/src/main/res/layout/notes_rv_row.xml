@@ -11,7 +11,8 @@
         tools:ignore="UseCompoundDrawables"
         android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="#fedbd0">
 
         <TextView
             android:id="@+id/noteTitle"
@@ -20,14 +21,14 @@
             android:paddingEnd="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#964b00"
+            android:textColor="#442c2e"
             android:textSize="30sp"
             android:gravity="center"/>
         <TextView
             android:id="@+id/noteDescription"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:textColor="#000"
+            android:textColor="#442c2e"
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
