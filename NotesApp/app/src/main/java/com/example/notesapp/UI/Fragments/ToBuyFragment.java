@@ -30,6 +30,7 @@ import java.util.List;
 
 import io.reactivex.CompletableObserver;
 import io.reactivex.FlowableSubscriber;
+import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -64,24 +65,24 @@ public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
         notesRoom.notesDao().getFragmentNotes("ToBuy")
                         .subscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new SingleObserver<List<NoteModel>>() {
+                        .subscribe(new Observer<List<NoteModel>>() {
                             @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
+                            public void onSubscribe(Disposable d) {}
 
                             @Override
-                            public void onSuccess(List<NoteModel> notes) {
+                            public void onNext(List<NoteModel> notes) {
                                 toBuyList= ToArrayListConverter.toArrayList(notes);
                                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toBuyList,ToBuyFragment.this);
                                 recyclerView.setAdapter(adapter);
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(Throwable e) {}
 
-                            }
+                            @Override
+                            public void onComplete() {}
                         });
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

@@ -30,6 +30,7 @@ import java.util.List;
 
 import io.reactivex.CompletableObserver;
 import io.reactivex.FlowableSubscriber;
+import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -64,23 +65,22 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
         notesRoom.notesDao().getFragmentNotes("ToDo")
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<List<NoteModel>>() {
+                .subscribe(new Observer<List<NoteModel>>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
+                    public void onSubscribe(Disposable d) {}
 
                     @Override
-                    public void onSuccess(List<NoteModel> notes) {
+                    public void onNext(List<NoteModel> notes) {
                         toDoList= ToArrayListConverter.toArrayList(notes);
                         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toDoList,ToDoFragment.this);
                         recyclerView.setAdapter(adapter);
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable e) {}
 
-                    }
+                    @Override
+                    public void onComplete() {}
                 });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -11,6 +11,7 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 @Dao
@@ -23,7 +24,7 @@ Completable insertNote(Note note);
 Completable deleteNote(String noteTitle);
 
 @Query("SELECT noteTitle,noteContent FROM notesTable WHERE noteSection=:fragmentName ORDER BY noteTitle")
-Single<List<NoteModel>> getFragmentNotes(String fragmentName);
+Observable<List<NoteModel>> getFragmentNotes(String fragmentName);
 
 @Query("SELECT COUNT(*) FROM notesTable WHERE noteSection=:fragmentName")
 Flowable<Integer> getFragmentNumberNotes(String fragmentName);
