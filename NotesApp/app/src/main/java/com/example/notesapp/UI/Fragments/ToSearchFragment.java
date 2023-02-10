@@ -23,15 +23,11 @@ import com.example.notesapp.R;
 import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
 import com.example.notesapp.Room.NotesDatabase;
 
-import org.reactivestreams.Subscription;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
-import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observer;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -40,6 +36,7 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
 
     public static ArrayList<NoteModel> toSearchList =new ArrayList<>();
 
+    /* Instance to deal with Gesture Module */
     private GestureDetectorCompat gestureDetectorCompat=null;
 
     /* Instance to deal with Room */
@@ -57,7 +54,7 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
         View view = inflater.inflate(R.layout.fragment_to_search, container, false);
         RecyclerView recyclerView=view.findViewById(R.id.toSearchRecyclerView);
 
-        /* Instance to deal with SwipeGesture */
+        /* Handling SwipeGesture */
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
         gestureListener.setToSearchFragment(this);
         gestureDetectorCompat= new GestureDetectorCompat(this.getActivity(),gestureListener);
@@ -114,7 +111,7 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.NoteDeleted, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

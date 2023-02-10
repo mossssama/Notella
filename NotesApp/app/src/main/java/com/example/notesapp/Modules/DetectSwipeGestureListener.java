@@ -41,6 +41,7 @@ public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureL
     public void setToWatchFragment(ToWatchFragment toWatchFragment){    this.toWatchFragment=toWatchFragment;   }
 
 
+    /* Casting the onFling function to OnRightSwipe & OnLeftSwipe */
     @Override
     public boolean onFling(@NonNull MotionEvent e1, @NonNull MotionEvent e2, float velocityX, float velocityY) {
             try {
@@ -49,6 +50,7 @@ public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureL
                 float deltaXAbs = Math.abs(deltaX);
                 float deltaYAbs = Math.abs(deltaY);
 
+                /* OnSwipe(Right or Left) */
                 if (deltaXAbs >= MIN_SWIPE_DISTANCE_X && deltaXAbs <= MAX_SWIPE_DISTANCE_X && deltaXAbs>deltaYAbs) {
                     switch(MainActivity.CURRENT_FRAGMENT_ID){
                         case R.id.toBuy:    this.toBuyFragment.onSwipe();
@@ -58,19 +60,10 @@ public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureL
                         case R.id.toWatch:  this.toWatchFragment.onSwipe();
                     }
                 }
+
             } catch (Exception e) {e.printStackTrace();}
+
         return true;
     }
 
-    /* On Single Click*/
-    @Override
-    public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
-        return true;
-    }
-
-    /* On Double Click */
-    @Override
-    public boolean onDoubleTap(@NonNull MotionEvent e) {
-        return true;
-    }
 }

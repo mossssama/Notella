@@ -2,4 +2,6 @@
     <string name="app_name">NotesApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="NoteDeleted">Note Deleted Successfully</string>
+    <string name="NoteSaved">Note Saved Successfully</string>
 </resources>

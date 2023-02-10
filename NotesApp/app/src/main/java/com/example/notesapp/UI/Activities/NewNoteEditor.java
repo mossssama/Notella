@@ -65,38 +65,20 @@ public class NewNoteEditor extends AppCompatActivity {
                         public void onError(Throwable e) {}
                     });
 
-            /* Delete old version of current note */
-            notesRoom.notesDao().deleteNote(newNoteTitle.getText()+"")
+            /* Save latest version of current note*/
+            notesRoom.notesDao().insertNote(new Note(newNoteTitle.getText()+"",newNoteContent.getText()+"",currentFragmentName))
                     .subscribeOn(Schedulers.computation())
                     .subscribe(new CompletableObserver() {
                         @Override
                         public void onSubscribe(Disposable d) {}
 
                         @Override
-                        public void onComplete() {}
+                        public void onComplete() {
+                            Toast.makeText(getApplicationContext(), R.string.NoteSaved, Toast.LENGTH_SHORT).show();
+                        }
 
                         @Override
                         public void onError(Throwable e) {}
-                    });
-
-            /* Save latest version of current note*/
-            notesRoom.notesDao().insertNote(new Note(newNoteTitle.getText()+"",newNoteContent.getText()+"",currentFragmentName))
-                    .subscribeOn(Schedulers.computation())
-                    .subscribe(new CompletableObserver() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-                            Toast.makeText(getApplicationContext(), "Subscribe", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onComplete() {
-                            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                        }
                     });
 
         });

@@ -23,15 +23,11 @@ import com.example.notesapp.R;
 import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
 import com.example.notesapp.Room.NotesDatabase;
 
-import org.reactivestreams.Subscription;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
-import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observer;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -40,6 +36,7 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
 
     public static ArrayList<NoteModel> toDoList =new ArrayList<>();
 
+    /* Instance to deal with Gesture Module */
     private GestureDetectorCompat gestureDetectorCompat=null;
 
     public ToDoFragment() {}
@@ -54,7 +51,7 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
         View view =  inflater.inflate(R.layout.fragment_to_do, container, false);
         RecyclerView recyclerView=view.findViewById(R.id.toDoRecyclerView);
 
-        /* Instance to deal with SwipeGesture */
+        /* Handling SwipeGesture */
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
         gestureListener.setToDoFragment(this);
         gestureDetectorCompat= new GestureDetectorCompat(this.getActivity(),gestureListener);
@@ -117,7 +114,7 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.NoteDeleted, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -126,7 +123,6 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
                     }
                 });
     }
-
 
     /* to add a note onSwipe */
     public void onSwipe(){

@@ -12,7 +12,6 @@ public class NoteModel {
     public String getNoteTitle() {
         return noteTitle;
     }
-
     public void setNoteTitle(String noteTitle) {
         this.noteTitle = noteTitle;
     }
@@ -20,7 +19,6 @@ public class NoteModel {
     public String getNoteDescription() {
         return noteDescription;
     }
-
     public void setNoteDescription(String noteDescription) {
         this.noteDescription = noteDescription;
     }
