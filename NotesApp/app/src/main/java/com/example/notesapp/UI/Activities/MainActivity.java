@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    int intentFragment;
 
     /* To track current Fragment */
     public static int CURRENT_FRAGMENT_ID;
@@ -45,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+        /* Return to the same fragment after adding a new Note */
+        if(getIntent().getExtras()!=null) {
+            intentFragment = getIntent().getExtras().getInt("fragment");
+            switch (intentFragment) {
+                case R.id.toDo:     loadContainerWithFragment(new ToDoFragment());      CURRENT_FRAGMENT_ID = R.id.toDo;        bottomNavigationView.getMenu().getItem(0).setChecked(true); break;
+                case R.id.toBuy:    loadContainerWithFragment(new ToBuyFragment());     CURRENT_FRAGMENT_ID = R.id.toBuy;       bottomNavigationView.getMenu().getItem(1).setChecked(true); break;
+                case R.id.toSearch: loadContainerWithFragment(new ToSearchFragment());  CURRENT_FRAGMENT_ID = R.id.toSearch;    bottomNavigationView.getMenu().getItem(2).setChecked(true); break;
+                case R.id.toWatch:  loadContainerWithFragment(new ToWatchFragment());   CURRENT_FRAGMENT_ID = R.id.toWatch;     bottomNavigationView.getMenu().getItem(3).setChecked(true); break;
+                case R.id.toRead:   loadContainerWithFragment(new ToReadFragment());    CURRENT_FRAGMENT_ID = R.id.toRead;      bottomNavigationView.getMenu().getItem(4).setChecked(true); break;
+            }
+        }
     }
 
 

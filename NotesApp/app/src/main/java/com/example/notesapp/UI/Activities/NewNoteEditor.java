@@ -13,6 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.notesapp.R;
 import com.example.notesapp.Room.Note;
 import com.example.notesapp.Room.NotesDatabase;
+import com.example.notesapp.UI.Fragments.ToBuyFragment;
+import com.example.notesapp.UI.Fragments.ToDoFragment;
+import com.example.notesapp.UI.Fragments.ToReadFragment;
+import com.example.notesapp.UI.Fragments.ToSearchFragment;
+import com.example.notesapp.UI.Fragments.ToWatchFragment;
 
 import io.reactivex.CompletableObserver;
 import io.reactivex.disposables.Disposable;
@@ -81,6 +86,10 @@ public class NewNoteEditor extends AppCompatActivity {
                         public void onError(Throwable e) {}
                     });
 
+
+           Intent returnToFragment=new Intent(this, MainActivity.class);
+           returnToFragment.putExtra("fragment",MainActivity.CURRENT_FRAGMENT_ID);
+           startActivity(returnToFragment);
         });
 
     }
