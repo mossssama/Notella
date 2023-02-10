@@ -10,6 +10,7 @@ import com.example.notesapp.POJO.NoteModel;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 @Dao
@@ -25,13 +26,13 @@ Completable deleteNote(String noteTitle);
 Single<List<NoteModel>> getFragmentNotes(String fragmentName);
 
 @Query("SELECT COUNT(*) FROM notesTable WHERE noteSection=:fragmentName")
-Single<Integer> getFragmentNumberNotes(String fragmentName);
+Flowable<Integer> getFragmentNumberNotes(String fragmentName);
 
 @Query("SELECT noteTitle,noteContent FROM notesTable ORDER BY noteTitle")
-Single<List<NoteModel>> getAllNotes();
+Flowable<List<NoteModel>> getAllNotes();
 
 @Query("SELECT COUNT(*) FROM notesTable")
-Single<Integer> getTotalNumberNotes();
+Flowable<Integer> getTotalNumberNotes();
 
 
 @Query("DELETE FROM notesTable")

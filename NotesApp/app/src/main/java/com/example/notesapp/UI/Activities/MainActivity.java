@@ -1,25 +1,18 @@
-package com.example.notesapp;
+package com.example.notesapp.UI.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.notesapp.Fragments.*;
+import com.example.notesapp.R;
+import com.example.notesapp.UI.Fragments.*;
 
 import com.example.notesapp.Room.NotesDatabase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         /* MainActivity Views the FrameLayout */
         bottomNavigationView=findViewById(R.id.bottomNavigationBar);
-        addNewNote=findViewById(R.id.addNewNoteBtn);
 
         /* Default Fragment in tempFrame is ToDoFragment */
         loadContainerWithFragment(new ToDoFragment());
@@ -52,12 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.toRead:   loadContainerWithFragment(new ToReadFragment());    CURRENT_FRAGMENT_ID=R.id.toRead;      break;
             }
             return true;
-        });
-
-        /* Go to New Note or Edit Old Note */
-        addNewNote.setOnClickListener((View view)-> {
-                Intent intent =new Intent(getApplicationContext(), NewNoteEditor.class);
-                startActivity(intent);
         });
 
         /* Instance to deal with Room */
@@ -197,61 +183,60 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                });
 
-        notesRoom.notesDao().getFragmentNumberNotes("ToDo")
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {}
+//        notesRoom.notesDao().getFragmentNumberNotes("ToDo")
+//                .subscribeOn(Schedulers.computation())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleObserver<Integer>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {}
+//
+//                    @Override
+//                    public void onSuccess(Integer integer) {
+//                        Toast.makeText(MainActivity.this, ""+integer, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//                });
 
-                    @Override
-                    public void onSuccess(Integer integer) {
-                        Toast.makeText(MainActivity.this, ""+integer, Toast.LENGTH_SHORT).show();
-                    }
+//        notesRoom.notesDao().getFragmentNumberNotes("ToBuy")
+//                .subscribeOn(Schedulers.computation())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleObserver<Integer>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {}
+//
+//                    @Override
+//                    public void onSuccess(Integer integer) {
+//                        Toast.makeText(MainActivity.this, ""+integer, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//                });
 
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-                });
-
-        notesRoom.notesDao().getFragmentNumberNotes("ToBuy")
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {}
-
-                    @Override
-                    public void onSuccess(Integer integer) {
-                        Toast.makeText(MainActivity.this, ""+integer, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-                });
-
-        notesRoom.notesDao().getTotalNumberNotes()
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Integer>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-                            }
-
-                            @Override
-                            public void onSuccess(Integer integer) {
-                                Toast.makeText(MainActivity.this, "Success :"+integer, Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
+//        notesRoom.notesDao().getTotalNumberNotes()
+//                .subscribeOn(Schedulers.computation())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleObserver<Integer>() {
+//                            @Override
+//                            public void onSubscribe(Disposable d) {
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(Integer integer) {
+//                                Toast.makeText(MainActivity.this, "Success :"+integer, Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
 
     }
     /* Function to load the fragmentContainer with specific fragment */

@@ -1,29 +1,35 @@
-package com.example.notesapp.Fragments;
+package com.example.notesapp.UI.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.notesapp.Converters.ToArrayListConverter;
-import com.example.notesapp.NewNoteEditor;
+import com.example.notesapp.Modules.DetectSwipeGestureListener;
+import com.example.notesapp.UI.Activities.NewNoteEditor;
 import com.example.notesapp.RecyclerView.RecyclerViewAdapter;
 import com.example.notesapp.POJO.NoteModel;
 import com.example.notesapp.R;
 import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
 import com.example.notesapp.Room.NotesDatabase;
 
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
+import io.reactivex.FlowableSubscriber;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -33,8 +39,7 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
 
     public static ArrayList<NoteModel> toDoList =new ArrayList<>();
 
-    /* Instance to deal with Room */
-    NotesDatabase notesRoom = NotesDatabase.getInstance(getContext());
+    private GestureDetectorCompat gestureDetectorCompat=null;
 
     public ToDoFragment() {}
 
@@ -48,12 +53,22 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
         View view =  inflater.inflate(R.layout.fragment_to_do, container, false);
         RecyclerView recyclerView=view.findViewById(R.id.toDoRecyclerView);
 
+        /* Instance to deal with SwipeGesture */
+        DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
+        gestureListener.setToDoFragment(this);
+        gestureDetectorCompat= new GestureDetectorCompat(this.getActivity(),gestureListener);
+
+        /* Instance to deal with Room */
+        NotesDatabase notesRoom = NotesDatabase.getInstance(getContext());
+
         notesRoom.notesDao().getFragmentNotes("ToDo")
-                            .subscribeOn(Schedulers.computation())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new SingleObserver<List<NoteModel>>() {
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<List<NoteModel>>() {
                     @Override
-                    public void onSubscribe(Disposable d) {}
+                    public void onSubscribe(Disposable d) {
+
+                    }
 
                     @Override
                     public void onSuccess(List<NoteModel> notes) {
@@ -64,10 +79,16 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
 
                     @Override
                     public void onError(Throwable e) {
+
                     }
                 });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        recyclerView.setOnTouchListener((View v, MotionEvent e) ->{
+            gestureDetectorCompat.onTouchEvent(e);
+            return false;
+        });
 
         return view;
     }
@@ -85,6 +106,9 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
     /* to delete a note */
     @Override
     public void onItemLongClick(int position) {
+        /* Instance to deal with Room */
+        NotesDatabase notesRoom = NotesDatabase.getInstance(getContext());
+
         notesRoom.notesDao().deleteNote(toDoList.get(position).getNoteTitle())
                 .subscribeOn(Schedulers.computation())
                 .subscribe(new CompletableObserver() {
@@ -102,4 +126,12 @@ public class ToDoFragment extends Fragment implements RecyclerViewItemClick {
                     }
                 });
     }
+
+
+    /* to add a note onSwipe */
+    public void onSwipe(){
+        Intent addNewNote = new Intent(getContext(),NewNoteEditor.class);
+        startActivity(addNewNote);
+    }
+
 }

@@ -1,29 +1,35 @@
-package com.example.notesapp.Fragments;
+package com.example.notesapp.UI.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.notesapp.Converters.ToArrayListConverter;
-import com.example.notesapp.NewNoteEditor;
+import com.example.notesapp.Modules.DetectSwipeGestureListener;
+import com.example.notesapp.UI.Activities.NewNoteEditor;
 import com.example.notesapp.RecyclerView.RecyclerViewAdapter;
 import com.example.notesapp.POJO.NoteModel;
 import com.example.notesapp.R;
 import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
 import com.example.notesapp.Room.NotesDatabase;
 
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
+import io.reactivex.FlowableSubscriber;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -32,6 +38,8 @@ import io.reactivex.schedulers.Schedulers;
 public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
 
     public static ArrayList<NoteModel> toBuyList =new ArrayList<>();
+
+    private GestureDetectorCompat gestureDetectorCompat=null;
 
     /* Instance to deal with Room */
     NotesDatabase notesRoom = NotesDatabase.getInstance(getContext());
@@ -48,27 +56,39 @@ public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
         View view= inflater.inflate(R.layout.fragment_to_buy, container, false);
         RecyclerView recyclerView=view.findViewById(R.id.toBuyRecyclerView);
 
+        /* Instance to deal with SwipeGesture */
+        DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
+        gestureListener.setToBuyFragment(this);
+        gestureDetectorCompat= new GestureDetectorCompat(this.getActivity(),gestureListener);
+
         notesRoom.notesDao().getFragmentNotes("ToBuy")
-                            .subscribeOn(Schedulers.computation())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new SingleObserver<List<NoteModel>>() {
-                                @Override
-                                public void onSubscribe(Disposable d) {}
+                        .subscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new SingleObserver<List<NoteModel>>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
 
-                                @Override
-                                public void onSuccess(List<NoteModel> notes) {
-                                    toBuyList= ToArrayListConverter.toArrayList(notes);
-                                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toBuyList,ToBuyFragment.this);
-                                    recyclerView.setAdapter(adapter);
-                                }
+                            }
 
-                                @Override
-                                public void onError(Throwable e) {
-                                }
+                            @Override
+                            public void onSuccess(List<NoteModel> notes) {
+                                toBuyList= ToArrayListConverter.toArrayList(notes);
+                                RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toBuyList,ToBuyFragment.this);
+                                recyclerView.setAdapter(adapter);
+                            }
 
-                            });
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+                        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        recyclerView.setOnTouchListener((View v, MotionEvent e) ->{
+                gestureDetectorCompat.onTouchEvent(e);
+                return false;
+        });
 
         return view;
     }
@@ -103,4 +123,11 @@ public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
                     }
                 });
     }
+
+    /* to add a note onSwipe */
+    public void onSwipe(){
+        Intent addNewNote = new Intent(getContext(),NewNoteEditor.class);
+        startActivity(addNewNote);
+    }
+
 }
