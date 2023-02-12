@@ -11,15 +11,17 @@
         android:weightSum="10"
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:background="@color/light_pink"
+        android:background="@color/nude"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/new_note_title"
             android:layout_weight="2"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:textSize="20dp"
+            android:textSize="24sp"
+            android:gravity="start"
+            android:layout_gravity="start"
             android:textStyle="bold"
             android:textColor="@color/dark_brown"/>
 
@@ -27,16 +29,18 @@
             android:id="@+id/new_note_content"
             android:layout_weight="8"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:textColor="@color/dark_brown"/>
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:text="Add Note"
+        android:text="@string/AddNote"
+        android:textSize="20dp"
         android:id="@+id/new_note_confirm"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:textColor="@color/light_pink"
+        android:textColor="@color/nude"
         android:backgroundTint="@color/dark_brown"
         android:layout_width="match_parent"/>
 

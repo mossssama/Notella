@@ -7,17 +7,26 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.notesapp.R;
+import com.example.notesapp.SharedPrefs;
 import com.example.notesapp.UI.Fragments.*;
 
 import com.example.notesapp.Room.NotesDatabase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import io.reactivex.CompletableObserver;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     int intentFragment;
+
+    /* To save preferences(controlling notifying messages to user) */
+    public static SharedPrefs sharedPrefs;
 
     /* To track current Fragment */
     public static int CURRENT_FRAGMENT_ID;
@@ -33,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         /* Default Fragment in tempFrame is ToDoFragment */
         loadContainerWithFragment(new ToDoFragment());
         CURRENT_FRAGMENT_ID=R.id.toDo;
+
+        /* Instance to deal with SharedPrefs */
+        sharedPrefs=new SharedPrefs(getApplicationContext(),"AppData");
 
         /* Change the Fragment in tempFrame when an icon from bottomNav is clicked */
         bottomNavigationView.setOnItemSelectedListener( item -> {
@@ -56,7 +68,24 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.toWatch:  loadContainerWithFragment(new ToWatchFragment());   CURRENT_FRAGMENT_ID = R.id.toWatch;     bottomNavigationView.getMenu().getItem(3).setChecked(true); break;
                 case R.id.toRead:   loadContainerWithFragment(new ToReadFragment());    CURRENT_FRAGMENT_ID = R.id.toRead;      bottomNavigationView.getMenu().getItem(4).setChecked(true); break;
             }
+
+            /* Inform the new user how to edit or delete a note */
+            if(sharedPrefs.readMap("hasAddedFirstNote",false)==false){
+                Toast.makeText(this, R.string.HowToEditANote, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.HowToDeleteANote, Toast.LENGTH_SHORT).show();
+                sharedPrefs.write("hasAddedFirstNote",true);
+            }
+
+            /* Inform the user about the succession of adding new note */
+            Toast.makeText(this, R.string.NoteSaved, Toast.LENGTH_SHORT).show();
         }
+
+        /* Inform the new user how to add a note */
+        if(sharedPrefs.readMap("IsVisited",false)==false){
+            Toast.makeText(this, R.string.HowToAddANote, Toast.LENGTH_SHORT).show();
+            sharedPrefs.write("IsVisited",true);
+        }
+
     }
 
 

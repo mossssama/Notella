@@ -108,7 +108,8 @@ public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
                 .subscribeOn(Schedulers.computation())
                 .subscribe(new CompletableObserver() {
                     @Override
-                    public void onSubscribe(Disposable d) {}
+                    public void onSubscribe(Disposable d) {
+                    }
 
                     @Override
                     public void onComplete() {

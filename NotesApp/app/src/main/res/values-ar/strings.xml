@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">نوتـــيلا</string>
+    <string name="AddNote">اضافة</string>
+    <string name="ToRead">للقراءة</string>
+    <string name="ToWatch">للمشاهدة</string>
+    <string name="ToSearch">للبحث</string>
+    <string name="ToBuy">للشراء</string>
+    <string name="ToDo">للقيام به</string>
+    <string name="NoteDeleted">تم الحذف بنجاح</string>
+    <string name="NoteSaved">تمت الإضافة بنجاح</string>
+    <string name="HowToEditANote">لتعديل النوت، قوموا بالنقر عليها مرة</string>
+    <string name="HowToDeleteANote">لحذف النوت، قوموا بالضغط عليها لفترة</string>
+    <string name="HowToAddANote">لإضافة نوت جديدة، يرجي مسح للشاشة يمينا أو يسارا</string>
+</resources>

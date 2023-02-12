@@ -14,7 +14,7 @@ public abstract class NotesDatabase extends RoomDatabase {
 
     private static NotesDatabase instance;
     public abstract NotesDao notesDao();
-    private static String DATABASE_NAME ="notesDatabase";     /* Found in  com.example.ProjectName/data/data/database/databaseName  */
+    private static String DATABASE_NAME ="notesDB";     /* Found in  com.example.ProjectName/data/data/database/databaseName  */
 
     public static synchronized NotesDatabase getInstance(Context context) {
         if (instance == null) {

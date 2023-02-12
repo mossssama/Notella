@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">Notella</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="NoteDeleted">Note Deleted Successfully</string>
-    <string name="NoteSaved">Note Saved Successfully</string>
+    <string name="NoteSaved">Notes are updated Successfully</string>
+    <string name="HowToEditANote">CLICK on A note to edit it</string>
+    <string name="HowToDeleteANote">LONG PRESS on A Note to delete it</string>
+    <string name="HowToAddANote">SWIPE TO THE RIGHT or TO THE LEFT to add new Note</string>
+    <string name="ToDo">ToDo</string>
+    <string name="ToBuy">ToBuy</string>
+    <string name="ToSearch">ToSearch</string>
+    <string name="ToWatch">ToWatch</string>
+    <string name="ToRead">ToRead</string>
+    <string name="AddNote">Add Note</string>
 </resources>

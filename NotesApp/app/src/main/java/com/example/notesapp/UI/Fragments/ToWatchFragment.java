@@ -116,7 +116,6 @@ public class ToWatchFragment extends Fragment implements RecyclerViewItemClick {
 
                     @Override
                     public void onError(Throwable e) {
-
                     }
                 });
     }
