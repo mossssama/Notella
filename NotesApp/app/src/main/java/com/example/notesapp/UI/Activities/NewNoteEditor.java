@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.example.notesapp.R;
 import com.example.notesapp.Room.Note;
@@ -18,6 +19,7 @@ import com.example.notesapp.UI.Fragments.ToDoFragment;
 import com.example.notesapp.UI.Fragments.ToReadFragment;
 import com.example.notesapp.UI.Fragments.ToSearchFragment;
 import com.example.notesapp.UI.Fragments.ToWatchFragment;
+import com.example.notesapp.databinding.EditorNewNoteBinding;
 
 import io.reactivex.CompletableObserver;
 import io.reactivex.disposables.Disposable;
@@ -30,15 +32,14 @@ public class NewNoteEditor extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.editor_new_note);
-        EditText newNoteTitle=findViewById(R.id.new_note_title);
-        EditText newNoteContent=findViewById(R.id.new_note_content);
-        Button newNoteConfirm=findViewById(R.id.new_note_confirm);
+
+        /* Using dataBinding to isolate UI from code*/
+        EditorNewNoteBinding binding= DataBindingUtil.setContentView(this,R.layout.editor_new_note);
 
         /* to edit a note */
         Intent editNote=getIntent();
-        newNoteTitle.setText(editNote.getStringExtra("NoteTitle"));
-        newNoteContent.setText(editNote.getStringExtra("NoteContent"));
+        binding.newNoteTitle.setText(editNote.getStringExtra("NoteTitle"));
+        binding.newNoteContent.setText(editNote.getStringExtra("NoteContent"));
         currentFragmentName=editNote.getStringExtra("NoteFragment");
 
         /* Instance to deal with Room */
@@ -54,7 +55,7 @@ public class NewNoteEditor extends AppCompatActivity {
         }
 
         /* Adding new note or Editing old note */
-        newNoteConfirm.setOnClickListener((View view)-> {
+        binding.newNoteConfirm.setOnClickListener((View view)-> {
 
             /* Delete old note incase of editing old note */
             notesRoom.notesDao().deleteNote(editNote.getStringExtra("NoteTitle"))
@@ -71,7 +72,7 @@ public class NewNoteEditor extends AppCompatActivity {
                     });
 
             /* Save latest version of current note*/
-            notesRoom.notesDao().insertNote(new Note(newNoteTitle.getText()+"",newNoteContent.getText()+"",currentFragmentName))
+            notesRoom.notesDao().insertNote(new Note(binding.newNoteTitle.getText()+"",binding.newNoteContent.getText()+"",currentFragmentName))
                     .subscribeOn(Schedulers.computation())
                     .subscribe(new CompletableObserver() {
                         @Override

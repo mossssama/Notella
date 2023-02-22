@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.view.GestureDetectorCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.example.notesapp.POJO.NoteModel;
 import com.example.notesapp.R;
 import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
 import com.example.notesapp.Room.NotesDatabase;
+import com.example.notesapp.databinding.FragmentToBuyBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
+
 
     public static ArrayList<NoteModel> toBuyList =new ArrayList<>();
 
@@ -51,8 +54,8 @@ public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_to_buy, container, false);
-        RecyclerView recyclerView=view.findViewById(R.id.toBuyRecyclerView);
+        FragmentToBuyBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_to_buy,container,false);
+        View rootView = binding.getRoot();
 
         /* Handling SwipeGesture */
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
@@ -70,7 +73,7 @@ public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
                             public void onNext(List<NoteModel> notes) {
                                 toBuyList= ToArrayListConverter.toArrayList(notes);
                                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toBuyList,ToBuyFragment.this);
-                                recyclerView.setAdapter(adapter);
+                                binding.toBuyRecyclerView.setAdapter(adapter);
                             }
 
                             @Override
@@ -81,14 +84,14 @@ public class ToBuyFragment extends Fragment implements RecyclerViewItemClick {
                         });
 
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.toBuyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setOnTouchListener((View v, MotionEvent e) ->{
+        binding.toBuyRecyclerView.setOnTouchListener((View v, MotionEvent e) ->{
                 gestureDetectorCompat.onTouchEvent(e);
                 return false;
         });
 
-        return view;
+        return rootView;
     }
 
     /* to edit a note */

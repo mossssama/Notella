@@ -30,6 +30,13 @@
         <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/notes_list_item.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/layout/notes_rv_row.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/NoteAppWithRoom/NotesApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24031007751937986" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_buy.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_do.xml" value="0.10989583333333333" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_read.xml" value="0.10989583333333333" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_search.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/fragment_to_watch.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Notella/NotesApp/app/src/main/res/layout/notes_rv_row.xml" value="0.25" />
       </map>
     </option>
   </component>

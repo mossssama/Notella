@@ -1,6 +1,7 @@
 package com.example.notesapp.UI.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import com.example.notesapp.SharedPrefs;
 import com.example.notesapp.UI.Fragments.*;
 
 import com.example.notesapp.Room.NotesDatabase;
+import com.example.notesapp.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.reactivex.CompletableObserver;
@@ -22,7 +24,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
     int intentFragment;
 
     /* To save preferences(controlling notifying messages to user) */
@@ -34,10 +35,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        /* MainActivity Views the FrameLayout */
-        bottomNavigationView=findViewById(R.id.bottomNavigationBar);
+        /* Using dataBinding to isolate UI from code*/
+        ActivityMainBinding binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
 
         /* Default Fragment in tempFrame is ToDoFragment */
         loadContainerWithFragment(new ToDoFragment());
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefs=new SharedPrefs(getApplicationContext(),"AppData");
 
         /* Change the Fragment in tempFrame when an icon from bottomNav is clicked */
-        bottomNavigationView.setOnItemSelectedListener( item -> {
+        binding.bottomNavigationBar.setOnItemSelectedListener( item -> {
             switch(item.getItemId()){
                 case R.id.toDo:     loadContainerWithFragment(new ToDoFragment());      CURRENT_FRAGMENT_ID=R.id.toDo;        break;
                 case R.id.toBuy:    loadContainerWithFragment(new ToBuyFragment());     CURRENT_FRAGMENT_ID=R.id.toBuy;       break;
@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
         if(getIntent().getExtras()!=null) {
             intentFragment = getIntent().getExtras().getInt("fragment");
             switch (intentFragment) {
-                case R.id.toDo:     loadContainerWithFragment(new ToDoFragment());      CURRENT_FRAGMENT_ID = R.id.toDo;        bottomNavigationView.getMenu().getItem(0).setChecked(true); break;
-                case R.id.toBuy:    loadContainerWithFragment(new ToBuyFragment());     CURRENT_FRAGMENT_ID = R.id.toBuy;       bottomNavigationView.getMenu().getItem(1).setChecked(true); break;
-                case R.id.toSearch: loadContainerWithFragment(new ToSearchFragment());  CURRENT_FRAGMENT_ID = R.id.toSearch;    bottomNavigationView.getMenu().getItem(2).setChecked(true); break;
-                case R.id.toWatch:  loadContainerWithFragment(new ToWatchFragment());   CURRENT_FRAGMENT_ID = R.id.toWatch;     bottomNavigationView.getMenu().getItem(3).setChecked(true); break;
-                case R.id.toRead:   loadContainerWithFragment(new ToReadFragment());    CURRENT_FRAGMENT_ID = R.id.toRead;      bottomNavigationView.getMenu().getItem(4).setChecked(true); break;
+                case R.id.toDo:     loadContainerWithFragment(new ToDoFragment());      CURRENT_FRAGMENT_ID = R.id.toDo;        binding.bottomNavigationBar.getMenu().getItem(0).setChecked(true); break;
+                case R.id.toBuy:    loadContainerWithFragment(new ToBuyFragment());     CURRENT_FRAGMENT_ID = R.id.toBuy;       binding.bottomNavigationBar.getMenu().getItem(1).setChecked(true); break;
+                case R.id.toSearch: loadContainerWithFragment(new ToSearchFragment());  CURRENT_FRAGMENT_ID = R.id.toSearch;    binding.bottomNavigationBar.getMenu().getItem(2).setChecked(true); break;
+                case R.id.toWatch:  loadContainerWithFragment(new ToWatchFragment());   CURRENT_FRAGMENT_ID = R.id.toWatch;     binding.bottomNavigationBar.getMenu().getItem(3).setChecked(true); break;
+                case R.id.toRead:   loadContainerWithFragment(new ToReadFragment());    CURRENT_FRAGMENT_ID = R.id.toRead;      binding.bottomNavigationBar.getMenu().getItem(4).setChecked(true); break;
             }
 
             /* Inform the new user how to edit or delete a note */

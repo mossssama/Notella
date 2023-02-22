@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.view.GestureDetectorCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.example.notesapp.POJO.NoteModel;
 import com.example.notesapp.R;
 import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
 import com.example.notesapp.Room.NotesDatabase;
+import com.example.notesapp.databinding.FragmentToReadBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +53,8 @@ public class ToReadFragment extends Fragment implements RecyclerViewItemClick {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_to_read, container, false);
-        RecyclerView recyclerView=view.findViewById(R.id.toReadRecyclerView);
+        FragmentToReadBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_to_read,container,false);
+        View rootView = binding.getRoot();
 
         /* Handling SwipeGesture */
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
@@ -70,7 +72,7 @@ public class ToReadFragment extends Fragment implements RecyclerViewItemClick {
                     public void onNext(List<NoteModel> notes) {
                         toReadList= ToArrayListConverter.toArrayList(notes);
                         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toReadList,ToReadFragment.this);
-                        recyclerView.setAdapter(adapter);
+                        binding.toReadRecyclerView.setAdapter(adapter);
                     }
 
                     @Override
@@ -80,14 +82,14 @@ public class ToReadFragment extends Fragment implements RecyclerViewItemClick {
                     public void onComplete() {}
                 });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.toReadRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setOnTouchListener((View v, MotionEvent e) ->{
+        binding.toReadRecyclerView.setOnTouchListener((View v, MotionEvent e) ->{
             gestureDetectorCompat.onTouchEvent(e);
             return false;
         });
 
-        return view;
+        return rootView;
     }
 
     /* to edit a note */
