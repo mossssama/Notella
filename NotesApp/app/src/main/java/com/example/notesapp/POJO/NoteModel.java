@@ -2,11 +2,11 @@ package com.example.notesapp.POJO;
 
 public class NoteModel {
     String noteTitle;
-    String noteDescription;
+    String noteContent;
 
-    public NoteModel(String noteTitle, String noteDescription) {
+    public NoteModel(String noteTitle, String noteContent) {
         this.noteTitle = noteTitle;
-        this.noteDescription = noteDescription;
+        this.noteContent = noteContent;
     }
 
     public String getNoteTitle() {
@@ -16,10 +16,6 @@ public class NoteModel {
         this.noteTitle = noteTitle;
     }
 
-    public String getNoteDescription() {
-        return noteDescription;
-    }
-    public void setNoteDescription(String noteDescription) {
-        this.noteDescription = noteDescription;
-    }
+    public String getNoteContent() {return noteContent;}
+    public void setNoteContent(String noteContent) {this.noteContent = noteContent;}
 }

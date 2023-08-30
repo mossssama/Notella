@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 @Entity(tableName = "notesTable")
 public class Note {
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey
     @NotNull
     private String noteTitle;
     private String noteContent;

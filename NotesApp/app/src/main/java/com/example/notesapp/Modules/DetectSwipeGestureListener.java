@@ -16,17 +16,16 @@ import com.example.notesapp.R;
 
 public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureListener {
 
-    private static int MIN_SWIPE_DISTANCE_X =500;
-    private static int MIN_SWIPE_DISTANCE_Y=1000;
-    private static int MAX_SWIPE_DISTANCE_X=1000;
-    private static int MAX_SWIPE_DISTANCE_Y=1000;
+    private static final int MIN_SWIPE_DISTANCE_X =500;
+    private static final int MIN_SWIPE_DISTANCE_Y=1000;
+    private static final int MAX_SWIPE_DISTANCE_X=1000;
+    private static final int MAX_SWIPE_DISTANCE_Y=1000;
 
     private RecyclerView recyclerView=null;
     public RecyclerView getRecyclerView(){
         return recyclerView;
     }
     public void setRecyclerView(RecyclerView recyclerView){this.recyclerView=recyclerView;}
-
 
     /* fragment to display the message */
     private ToBuyFragment toBuyFragment=null;

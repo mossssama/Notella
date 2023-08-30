@@ -7,7 +7,6 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.notesapp.Converters.ToArrayListConverter;
+import com.example.notesapp.Converters.ToArrayList;
 import com.example.notesapp.Modules.DetectSwipeGestureListener;
 import com.example.notesapp.UI.Activities.NewNoteEditor;
 import com.example.notesapp.RecyclerView.RecyclerViewAdapter;
@@ -42,7 +41,7 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
     private GestureDetectorCompat gestureDetectorCompat=null;
 
     /* Instance to deal with Room */
-    NotesDatabase notesRoom = NotesDatabase.getInstance(getContext());
+    NotesDatabase notesRoom;
 
     public ToSearchFragment() {}
 
@@ -54,12 +53,14 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentToSearchBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_to_search,container,false);
-        View rootView = binding.getRoot();
 
         /* Handling SwipeGesture */
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
         gestureListener.setToSearchFragment(this);
-        gestureDetectorCompat= new GestureDetectorCompat(this.getActivity(),gestureListener);
+        gestureDetectorCompat= new GestureDetectorCompat(this.requireActivity(),gestureListener);
+
+        /* Instance to deal with Room */
+        notesRoom = NotesDatabase.getInstance(getContext());
 
         notesRoom.notesDao().getFragmentNotes("ToSearch")
                 .subscribeOn(Schedulers.computation())
@@ -70,7 +71,7 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
 
                     @Override
                     public void onNext(List<NoteModel> notes) {
-                        toSearchList= ToArrayListConverter.toArrayList(notes);
+                        toSearchList=ToArrayList.convert(notes);
                         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),toSearchList,ToSearchFragment.this);
                         binding.toSearchRecyclerView.setAdapter(adapter);
                     }
@@ -89,22 +90,32 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
             return false;
         });
 
-       return rootView;
+       return binding.getRoot();
     }
 
-    /* to edit a note */
     @Override
     public void onItemClick(int position) {
+        editNote(position);
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+        deleteNote(position);
+    }
+
+    public void onSwipe(){
+        addNote();
+    }
+
+    private void editNote(int position) {
         Intent editNote = new Intent(getContext(), NewNoteEditor.class);
         editNote.putExtra("NoteTitle",toSearchList.get(position).getNoteTitle());
-        editNote.putExtra("NoteContent",toSearchList.get(position).getNoteDescription());
+        editNote.putExtra("NoteContent",toSearchList.get(position).getNoteContent());
         editNote.putExtra("NoteFragment","ToSearch");
         startActivity(editNote);
     }
 
-    /* to delete a note */
-    @Override
-    public void onItemLongClick(int position) {
+    private void deleteNote(int position) {
         notesRoom.notesDao().deleteNote(toSearchList.get(position).getNoteTitle())
                 .subscribeOn(Schedulers.computation())
                 .subscribe(new CompletableObserver() {
@@ -117,14 +128,11 @@ public class ToSearchFragment extends Fragment implements RecyclerViewItemClick 
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-
-                    }
+                    public void onError(Throwable e) {}
                 });
     }
 
-    /* to add a note onSwipe */
-    public void onSwipe(){
+    private void addNote() {
         Intent addNewNote = new Intent(getContext(),NewNoteEditor.class);
         startActivity(addNewNote);
     }

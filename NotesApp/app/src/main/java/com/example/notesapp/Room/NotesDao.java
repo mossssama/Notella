@@ -1,7 +1,6 @@
 package com.example.notesapp.Room;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -12,7 +11,6 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 @Dao
 public interface NotesDao {
@@ -26,6 +24,8 @@ Completable deleteNote(String noteTitle);
 @Query("SELECT noteTitle,noteContent FROM notesTable WHERE noteSection=:fragmentName ORDER BY noteTitle")
 Observable<List<NoteModel>> getFragmentNotes(String fragmentName);
 
+
+
 @Query("SELECT COUNT(*) FROM notesTable WHERE noteSection=:fragmentName")
 Flowable<Integer> getFragmentNumberNotes(String fragmentName);
 
@@ -35,15 +35,8 @@ Flowable<List<NoteModel>> getAllNotes();
 @Query("SELECT COUNT(*) FROM notesTable")
 Flowable<Integer> getTotalNumberNotes();
 
-
 @Query("DELETE FROM notesTable")
 Completable clearRoom();
-
-
-
-
-//@Delete
-//Completable deleteNote(Note note);
 
 @Query("DELETE FROM notesTable")
 void deleteNodes();

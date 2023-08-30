@@ -7,20 +7,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.notesapp.R;
-import com.example.notesapp.SharedPrefs;
+import com.example.notesapp.SharedPrefs.SharedPrefs;
 import com.example.notesapp.UI.Fragments.*;
 
-import com.example.notesapp.Room.NotesDatabase;
 import com.example.notesapp.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import io.reactivex.CompletableObserver;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             /* Inform the new user how to edit or delete a note */
-            if(sharedPrefs.readMap("hasAddedFirstNote",false)==false){
+            if(!sharedPrefs.readMap("hasAddedFirstNote", false)){
                 Toast.makeText(this, R.string.HowToEditANote, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, R.string.HowToDeleteANote, Toast.LENGTH_SHORT).show();
                 sharedPrefs.write("hasAddedFirstNote",true);
@@ -81,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         /* Inform the new user how to add a note */
-        if(sharedPrefs.readMap("IsVisited",false)==false){
+        if(!sharedPrefs.readMap("IsVisited", false)){
             Toast.makeText(this, R.string.HowToAddANote, Toast.LENGTH_SHORT).show();
             sharedPrefs.write("IsVisited",true);
         }

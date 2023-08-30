@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.NoteViewHolder> {
     Context context;
-    private ArrayList<NoteModel> notesList= new ArrayList<NoteModel>();
-    private RecyclerViewItemClick recyclerViewItemClick;
+    private ArrayList<NoteModel> notesList;
+    private final RecyclerViewItemClick recyclerViewItemClick;
 
     public RecyclerViewAdapter(Context context, ArrayList<NoteModel> notesList, RecyclerViewItemClick recyclerViewItemClick) {
         this.context = context;
@@ -38,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         holder.noteTitle.setText(notesList.get(position).getNoteTitle());
-        holder.noteDescription.setText(notesList.get(position).getNoteDescription());
+        holder.noteDescription.setText(notesList.get(position).getNoteContent());
     }
 
     /* Inform the recycler view with the number of items you want to display */
@@ -61,9 +61,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             noteTitle=itemView.findViewById(R.id.noteTitle);
             noteDescription=itemView.findViewById(R.id.noteDescription);
 
-            itemView.setOnClickListener((View view)-> {
-                    recyclerViewItemClick.onItemClick(getAdapterPosition());
-            });
+            itemView.setOnClickListener((View view)-> recyclerViewItemClick.onItemClick(getAdapterPosition()));
 
             itemView.setOnLongClickListener((View view) ->{
                     recyclerViewItemClick.onItemLongClick(getAdapterPosition());
