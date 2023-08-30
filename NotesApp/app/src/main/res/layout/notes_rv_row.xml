@@ -26,30 +26,29 @@
             android:textColor="#442c2e"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="4dp" />
+
+        <!-- Line between views -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            app:layout_constraintBottom_toTopOf="@+id/noteDescription"
+            app:layout_constraintTop_toBottomOf="@+id/noteTitle"
             tools:layout_editor_absoluteX="4dp" />
 
         <TextView
             android:id="@+id/noteDescription"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="#442c2e"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
+            android:textSize="22sp"
+            app:layout_constraintTop_toBottomOf="@+id/noteTitle"
             tools:layout_editor_absoluteX="4dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

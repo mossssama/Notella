@@ -42,12 +42,17 @@ public class NewNoteEditor extends AppCompatActivity {
         binding.newNoteTitle.setText(noteTitle);
         binding.newNoteContent.setText(noteContent);
 
-        updateCurrentFragmentName(MainActivity.CURRENT_FRAGMENT_ID);                                         /* Getting currentFragment Name */
+                                                 /* Getting currentFragment Name */
 
         /* Adding new note or Editing old note */
         binding.newNoteConfirm.setOnClickListener((View view)-> {
-            deleteNote(noteTitle);                                  /* Delete old note in case of editing old note */
-            saveNote(binding.newNoteTitle.getText(),binding.newNoteContent.getText(),currentFragmentName);                    /* Save latest version of current note*/
+            updateCurrentFragmentName(MainActivity.CURRENT_FRAGMENT_ID);
+
+            String newNoteTitle = binding.newNoteTitle.getText().toString();
+            String newNoteContent = binding.newNoteContent.getText().toString();
+
+            deleteNote(noteTitle);                                              /* Delete old note in case of editing old note */
+            saveNote(newNoteTitle,newNoteContent,currentFragmentName);          /* Save latest version of current note*/
 
             Intent returnToFragment=new Intent(this, MainActivity.class);
             returnToFragment.putExtra("fragment",MainActivity.CURRENT_FRAGMENT_ID);
@@ -66,8 +71,8 @@ public class NewNoteEditor extends AppCompatActivity {
         }
     }
 
-    private void saveNote(Editable noteTitle, Editable noteContent, String fragmentName) {
-        notesRoom.notesDao().insertNote(new Note(noteTitle.toString(),noteContent.toString(),fragmentName))
+    private void saveNote(String title, String content, String fragmentName) {
+        notesRoom.notesDao().insertNote(new Note(title,content,fragmentName))
                 .subscribeOn(Schedulers.computation())
                 .subscribe(new CompletableObserver() {
                     @Override
@@ -79,7 +84,9 @@ public class NewNoteEditor extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(Throwable e) {}
+                    public void onError(Throwable e) {
+                        Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 
@@ -91,7 +98,9 @@ public class NewNoteEditor extends AppCompatActivity {
                     public void onSubscribe(Disposable d) {}
 
                     @Override
-                    public void onComplete() {}
+                    public void onComplete() {
+                        Toast.makeText(getApplicationContext(), R.string.NoteDeleted, Toast.LENGTH_SHORT).show();
+                    }
 
                     @Override
                     public void onError(Throwable e) {}
