@@ -1,8 +1,7 @@
-package com.example.notesapp.UI.Activities;
+package com.example.notesapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.notesapp.R;
-import com.example.notesapp.Room.Note;
-import com.example.notesapp.Room.NotesDatabase;
+import com.example.notesapp.room.Note;
+import com.example.notesapp.room.NotesDatabase;
 import com.example.notesapp.databinding.EditorNewNoteBinding;
 
 import io.reactivex.CompletableObserver;
@@ -42,11 +41,10 @@ public class NewNoteEditor extends AppCompatActivity {
         binding.newNoteTitle.setText(noteTitle);
         binding.newNoteContent.setText(noteContent);
 
-                                                 /* Getting currentFragment Name */
 
         /* Adding new note or Editing old note */
         binding.newNoteConfirm.setOnClickListener((View view)-> {
-            updateCurrentFragmentName(MainActivity.CURRENT_FRAGMENT_ID);
+            updateCurrentFragmentName(MainActivity.CURRENT_FRAGMENT_ID);        /* Getting currentFragment Name */
 
             String newNoteTitle = binding.newNoteTitle.getText().toString();
             String newNoteContent = binding.newNoteContent.getText().toString();

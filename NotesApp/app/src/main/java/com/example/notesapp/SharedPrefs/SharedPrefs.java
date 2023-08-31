@@ -1,4 +1,4 @@
-package com.example.notesapp.SharedPrefs;
+package com.example.notesapp.sharedPrefs;
 
 import android.app.Activity;
 import android.content.Context;

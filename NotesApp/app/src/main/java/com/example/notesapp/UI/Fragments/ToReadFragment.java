@@ -1,4 +1,4 @@
-package com.example.notesapp.UI.Fragments;
+package com.example.notesapp.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +15,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.notesapp.Converters.ToArrayList;
-import com.example.notesapp.Modules.DetectSwipeGestureListener;
-import com.example.notesapp.UI.Activities.NewNoteEditor;
-import com.example.notesapp.RecyclerView.RecyclerViewAdapter;
-import com.example.notesapp.POJO.NoteModel;
+import com.example.notesapp.gestures.DetectSwipeGestureListener;
+import com.example.notesapp.ui.activities.NewNoteEditor;
+import com.example.notesapp.recyclerView.RecyclerViewAdapter;
+import com.example.notesapp.pojo.NoteModel;
 import com.example.notesapp.R;
-import com.example.notesapp.RecyclerView.RecyclerViewItemClick;
-import com.example.notesapp.Room.NotesDatabase;
+import com.example.notesapp.recyclerView.RecyclerViewItemClick;
+import com.example.notesapp.room.NotesDatabase;
 import com.example.notesapp.databinding.FragmentToReadBinding;
 
 import java.util.ArrayList;

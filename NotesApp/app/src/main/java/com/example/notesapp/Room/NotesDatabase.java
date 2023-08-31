@@ -1,4 +1,4 @@
-package com.example.notesapp.Room;
+package com.example.notesapp.room;
 
 import android.content.Context;
 import android.os.AsyncTask;

@@ -1,4 +1,4 @@
-package com.example.notesapp.POJO;
+package com.example.notesapp.pojo;
 
 public class NoteModel {
     String noteTitle;

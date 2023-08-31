@@ -11,4 +11,16 @@
     <string name="ToWatch">ToWatch</string>
     <string name="ToRead">ToRead</string>
     <string name="AddNote">Add Note</string>
+    <string name="title">Title</string>
+    <string name="details">Note Details</string>
+    <string name="SwipeTheScreen">Swipe the screen</string>
+    <string name="ClickOnIt">Click On It</string>
+    <string name="LongPressOnIt">LongPress On It</string>
+    <string name="ToDeleteNote">To Delete a Note</string>
+    <string name="ToEditNote">To Edit a Note</string>
+    <string name="ToAddaNote">To Add a Note</string>
+    <string name="ToAddanote">To Add a note</string>
+    <string name="ToaddaNote">To add a Note</string>
+    <string name="Toaddanote">To add a note</string>
+    <string name="toAddaNote">to Add a Note</string>
 </resources>

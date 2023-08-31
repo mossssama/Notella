@@ -1,4 +1,4 @@
-package com.example.notesapp.Modules;
+package com.example.notesapp.gestures;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -6,12 +6,12 @@ import android.view.MotionEvent;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.notesapp.UI.Fragments.ToBuyFragment;
-import com.example.notesapp.UI.Fragments.ToDoFragment;
-import com.example.notesapp.UI.Fragments.ToReadFragment;
-import com.example.notesapp.UI.Fragments.ToSearchFragment;
-import com.example.notesapp.UI.Fragments.ToWatchFragment;
-import com.example.notesapp.UI.Activities.MainActivity;
+import com.example.notesapp.ui.fragments.ToBuyFragment;
+import com.example.notesapp.ui.fragments.ToDoFragment;
+import com.example.notesapp.ui.fragments.ToReadFragment;
+import com.example.notesapp.ui.fragments.ToSearchFragment;
+import com.example.notesapp.ui.fragments.ToWatchFragment;
+import com.example.notesapp.ui.activities.MainActivity;
 import com.example.notesapp.R;
 
 public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureListener {

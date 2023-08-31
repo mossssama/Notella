@@ -1,11 +1,11 @@
-package com.example.notesapp.Room;
+package com.example.notesapp.room;
 
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.notesapp.POJO.NoteModel;
+import com.example.notesapp.pojo.NoteModel;
 
 import java.util.List;
 

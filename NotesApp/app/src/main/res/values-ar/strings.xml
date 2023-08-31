@@ -12,4 +12,17 @@
     <string name="HowToEditANote">لتعديل النوت، قوموا بالنقر عليها مرة</string>
     <string name="HowToDeleteANote">لحذف النوت، قوموا بالضغط عليها لفترة</string>
     <string name="HowToAddANote">لإضافة نوت جديدة، يرجي مسح للشاشة يمينا أو يسارا</string>
+    <string name="title">ضع عنوان</string>
+    <string name="details">اكتب التفاصيل هنا</string>
+    <string name="SwipeTheScreen">امسح الشاشة</string>
+    <string name="ClickOnIt">اضغط عليها</string>
+    <string name="LongPressOnIt">اضعط عليها طويلا</string>
+    <string name="ToDeleteNote">من أجل مسح ملحوظة</string>
+    <string name="ToEditNote">من أجل تعديل ملحوظة</string>
+    <string name="ToAddaNote">من أجل اضافة ملحوظة</string>
+    <string name="ToAddanote">لإضافة ملحوطة</string>
+    <string name="ToaddaNote">لإضافة ملحوظة جديدة</string>
+    <string name="Toaddanote">من أجل وضع ملحوظة</string>
+    <string name="toAddaNote">لوضع ملحوظة</string>
+
 </resources>

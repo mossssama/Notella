@@ -1,4 +1,4 @@
-package com.example.notesapp.RecyclerView;
+package com.example.notesapp.recyclerView;
 
 
 /* Interface abstracting the RecyclerView item clicks

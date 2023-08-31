@@ -14,4 +14,11 @@
     <color name="light_pink">#a18251</color>
 <!--    <color name="light_pink">#fff0e8</color>-->
     <color name="nude">#fedbd0</color>
+
+    <color name="_white">#F0F0F0</color>
+    <color name="_grey">#ABABAB</color>
+    <color name="_dark_grey">#212121</color>
+    <color name="_black">#0F0F0F</color>
+    <color name="_red">#FF4E46</color>
+
 </resources>

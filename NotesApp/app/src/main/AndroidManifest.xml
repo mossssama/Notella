@@ -14,10 +14,10 @@
         android:theme="@style/Theme.NotesApp"
         tools:targetApi="31">
         <activity
-            android:name=".UI.Activities.NewNoteEditor"
+            android:name=".ui.activities.NewNoteEditor"
             android:exported="true"/>
         <activity
-            android:name=".UI.Activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/nude"
+        android:background="@color/_black"
         android:orientation="vertical">
 
         <EditText
@@ -17,11 +17,20 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="@color/dark_brown"
+            android:hint="@string/title"
+            android:textColorHint="@color/_white"
+            android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/_dark_grey"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <EditText
             android:id="@+id/new_note_content"
@@ -29,8 +38,10 @@
             android:layout_height="0dp"
             android:layout_gravity="start"
             android:gravity="center"
+            android:hint="@string/details"
+            android:textColorHint="@color/_white"
             android:textSize="20sp"
-            android:textColor="@color/dark_brown"
+            android:textColor="@color/_grey"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -38,9 +49,10 @@
             android:id="@+id/new_note_confirm"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:backgroundTint="@color/dark_brown"
+            android:backgroundTint="@color/_dark_grey"
             android:text="@string/AddNote"
-            android:textColor="@color/nude"
+            android:textColor="@color/_white"
+            android:textStyle="bold"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -58,5 +70,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.86" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

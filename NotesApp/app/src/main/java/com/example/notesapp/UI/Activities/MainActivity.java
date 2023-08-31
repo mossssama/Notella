@@ -1,4 +1,4 @@
-package com.example.notesapp.UI.Activities;
+package com.example.notesapp.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -10,10 +10,16 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.notesapp.R;
-import com.example.notesapp.SharedPrefs.SharedPrefs;
-import com.example.notesapp.UI.Fragments.*;
+import com.example.notesapp.room.Note;
+import com.example.notesapp.room.NotesDatabase;
+import com.example.notesapp.sharedPrefs.SharedPrefs;
+import com.example.notesapp.ui.fragments.*;
 
 import com.example.notesapp.databinding.ActivityMainBinding;
+
+import io.reactivex.CompletableObserver;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         /* Using dataBinding to isolate UI from code*/
-        ActivityMainBinding binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+        ActivityMainBinding binding= DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         /* Default Fragment in tempFrame is ToDoFragment */
         loadContainerWithFragment(new ToDoFragment());
@@ -75,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* Inform the new user how to add a note */
         if(!sharedPrefs.readMap("IsVisited", false)){
-            Toast.makeText(this, R.string.HowToAddANote, Toast.LENGTH_SHORT).show();
+            userFirstTimeAnnouncements();
             sharedPrefs.write("IsVisited",true);
         }
 
@@ -88,6 +94,82 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft= fm.beginTransaction();
         ft.replace(R.id.fragContainer,fragment);
         ft.commit();
+    }
+
+    /* Inform the user; how to use the app */
+    private void userFirstTimeAnnouncements(){
+        NotesDatabase notesRoom = NotesDatabase.getInstance(getApplicationContext());
+
+        notesRoom.notesDao().insertNote(new Note(getString(R.string.ToDeleteNote),getString(R.string.LongPressOnIt),"ToDo")).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {}
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {}
+        });
+        notesRoom.notesDao().insertNote(new Note(getString(R.string.ToEditNote),getString(R.string.ClickOnIt),"ToDo")).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {}
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {}
+        });
+        notesRoom.notesDao().insertNote(new Note(getString(R.string.ToAddaNote),getString(R.string.SwipeTheScreen),"ToDo")).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {}
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {}
+        });
+        notesRoom.notesDao().insertNote(new Note(getString(R.string.ToAddanote),getString(R.string.SwipeTheScreen),"ToBuy")).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {}
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {}
+        });
+        notesRoom.notesDao().insertNote(new Note(getString(R.string.ToaddaNote),getString(R.string.SwipeTheScreen),"ToSearch")).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {}
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {}
+        });
+        notesRoom.notesDao().insertNote(new Note(getString(R.string.Toaddanote),getString(R.string.SwipeTheScreen),"ToWatch")).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {}
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {}
+        });
+        notesRoom.notesDao().insertNote(new Note(getString(R.string.toAddaNote),getString(R.string.SwipeTheScreen),"ToRead")).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {}
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {}
+        });
     }
 
 }

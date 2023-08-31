@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UI.Activities.MainActivity">
+        tools:context=".ui.activities.MainActivity">
 
-        <!-- BottomNav feed by the menu menitioned below -->
+        <!-- BottomNav feed by the menu mentioned below -->
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragContainer"
             android:layout_width="0dp"
@@ -22,18 +21,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Line between views -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/_dark_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/fragContainer"
+            app:layout_constraintEnd_toEndOf="@+id/bottomNavigationBar"
+            app:layout_constraintStart_toStartOf="@+id/bottomNavigationBar" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/dark_brown"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
+            app:backgroundTint="@color/_black"
+            app:itemIconTint="@drawable/selector_bottom_navigation_icon"
+            app:itemTextColor="@color/_red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_nav_menu" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

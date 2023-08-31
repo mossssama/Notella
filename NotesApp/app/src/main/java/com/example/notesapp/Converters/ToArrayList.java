@@ -1,6 +1,6 @@
 package com.example.notesapp.Converters;
 
-import com.example.notesapp.POJO.NoteModel;
+import com.example.notesapp.pojo.NoteModel;
 
 import java.util.ArrayList;
 import java.util.List;
