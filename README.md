@@ -20,8 +20,6 @@ Here're some of the project's best features:
   
 <h2>💻 Built with</h2>
 
-Technologies used in the project:
-
 Technologies used in the project: CodeBase is mainly in **Java** & UI is build in **XML**
 *   1- **RXJava**: to perform asynchronous tasks of editing adding & deleting notes
 *   2- **Room**: for storing the notes
