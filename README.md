@@ -7,7 +7,7 @@
 
 <h2>🚀 Download from here</h2>
 
-[https://play.google.com/store/apps/details?id=com.mOssssama.notesapp](https://play.google.com/store/apps/details?id=com.mOssssama.notesapp)
+[To Be Updated](https://github.com/mossssama/Notella)
   
 <h2>🧐 Features</h2>
 
